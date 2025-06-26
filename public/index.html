@@ -53,7 +53,8 @@
         form.onsubmit = function (e) {
           e.preventDefault()
           const input = document.querySelector('.input')
-          const text = input.value
+          let r = Math.random() * 10
+          const text = input.value + random(r)
           ws.send(JSON.stringify({ id: myId, text }))
           input.value = ''
           input.focus()
@@ -75,6 +76,26 @@
         ws.onerror = function (error) {
           console.error('WebSocket Error: ', error)
         }
+      }
+
+      function random(x){
+        let str = ""
+        if (x < 1){
+            str = "^_^"
+        } else if (1 <= x && x < 2) {
+            str = "!"
+        } else if (2 <= x && x < 3) {
+            str = "???"
+        } else if (3 <= x && x < 4) {
+            str = "=)"
+        } else if (4 <= x && x < 5) {
+            str = ">_<"
+        } else if (5 <= x && x < 6) {
+            str = "カナ？"
+        } else if (6 <= x && x < 7) {
+            str = "　まぁ、知らんけど。"
+        }
+        return str
       }
 
       main()
